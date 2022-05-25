@@ -1,0 +1,19 @@
+import axios from "axios";
+const API_KEY = "eba0388c934688725105b53c98cf82ca";
+
+axios.defaults.baseURL = "https://api.themoviedb.org";
+
+export async function fetchTrendingMouvies() {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=1`
+  );
+  //   console.log(response.data);
+  return response.data;
+}
+
+export async function fetchMouvieById(movie_id) {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data;
+}
