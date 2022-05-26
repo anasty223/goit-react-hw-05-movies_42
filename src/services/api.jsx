@@ -24,8 +24,9 @@ https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&lang
   return response.data;
 }
 
-export const searchFilms = (query) => {
-  return axios.get(
+export async function searchFilms(query) {
+  const response = await axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`
   );
-};
+  return response.data;
+}

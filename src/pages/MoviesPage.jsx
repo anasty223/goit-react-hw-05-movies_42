@@ -37,8 +37,8 @@ const MoviesPage = () => {
       async function fetchMouvie() {
         try {
           const mouvies = await api.searchFilms(query);
-          setMovies(mouvies.data.results);
-          console.log(mouvies.data.results);
+          setMovies(mouvies.results);
+          console.log(mouvies.results);
         } catch (error) {
           console.log(error);
         }
