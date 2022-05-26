@@ -17,3 +17,15 @@ export async function fetchMouvieById(movie_id) {
   );
   return response.data;
 }
+
+export async function fetchMouvieByQuery(query, page) {
+  const response = await axios.get(`
+https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`);
+  return response.data;
+}
+
+export const searchFilms = (query) => {
+  return axios.get(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`
+  );
+};

@@ -4,14 +4,14 @@ import * as api from "../services/api";
 const BASE_URL = "https://image.tmdb.org/t/p/w500/";
 export default function MovieDetailsPage() {
   const { id } = useParams();
-  console.log("bookId", id);
+  // console.log("bookId", id);
   const [mouvie, setMouvie] = useState(null);
 
   useEffect(() => {
     async function fetchMouvie() {
       try {
-        const mouvie = await api.fetchMouvieById(id);
-        setMouvie(mouvie);
+        const results = await api.fetchMouvieById(id);
+        setMouvie(results);
       } catch (error) {
         console.log(error);
       }
