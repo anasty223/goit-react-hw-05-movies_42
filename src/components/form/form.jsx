@@ -3,13 +3,15 @@ import { useSearchParams } from "react-router-dom";
 
 export default function Form({ onSubmit }) {
   const [query, setQuery] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    // console.log("this.state in form", query);
+    if (query.trim() === "") {
+      alert("🦄 Please, enter text !");
+      return;
+    }
     onSubmit(query);
-    setSearchParams({ query: setQuery });
+
     reset();
   };
   const reset = () => {
