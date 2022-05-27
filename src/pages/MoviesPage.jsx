@@ -7,6 +7,7 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchMouvie, setSearchMovie] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(1);
 
   const handleSetFilms = (e) => {
     setSearchMovie(e.target.value.trim());
@@ -24,29 +25,25 @@ const MoviesPage = () => {
     if (searchMouvieNorm) {
       setSearchParams({ query: searchMouvie });
     }
-
+    setMovies([]);
     reset();
   };
 
   const reset = () => {
     setSearchMovie("");
   };
+  let query = searchParams.get("query") ?? "";
   useEffect(() => {
-    let query = searchParams.get("query");
-    if (query) {
-      async function fetchMouvie() {
-        try {
-          const mouvies = await api.searchFilms(query);
-          setMovies(mouvies.results);
-          console.log(mouvies.results);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      fetchMouvie();
+    if (!query) {
+      return;
     }
-  }, [searchParams]);
+    api.searchFilms(query, page).then(({ results }) => {
+      if (results.length === 0) {
+        alert("ERROR");
+      }
+      return setMovies((prev) => [...prev, ...results]);
+    });
+  }, [page, query, searchParams]);
 
   return (
     <div>
