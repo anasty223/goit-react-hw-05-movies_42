@@ -25,56 +25,16 @@ const MoviesPage = () => {
     });
   }, [page, query, searchParams]);
 
-  // const handleSetFilms = (e) => {
-  //   setSearchMovie(e.target.value.trim());
-  // };
-
   const handleSubmitForm = (searchQuery) => {
     setMovies([]);
     setPage(1);
     setSearchParams({ query: searchQuery });
-    // e.preventDefault();
-
-    // const searchMouvieNorm = searchMouvie.toLowerCase().trim();
-
-    // if (!searchMouvieNorm) {
-    //   alert("🦄Please enter the text!");
-    //   return;
-    // }
-    // if (searchMouvieNorm) {
-    //   setSearchParams({ query: searchMouvie });
-    // }
-    // setMovies([]);
-    // reset();
   };
-
-  // const reset = () => {
-  //   setSearchMovie("");
-  // };
 
   return (
     <div>
       <Form onSubmit={handleSubmitForm} />
       <ImageGallery items={movies} />
-      {/* <form onSubmit={handleSubmitForm}>
-        <h1>Enter a movie request</h1>
-        <input
-          onChange={handleSetFilms}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-        <button>search</button>
-      </form> */}
-      {/* 
-      {movies && (
-        <ul>
-          {movies.map((mouvie) => (
-            <li key={mouvie.id}>{mouvie.title}</li>
-          ))}
-        </ul>
-      )} */}
     </div>
   );
 };
