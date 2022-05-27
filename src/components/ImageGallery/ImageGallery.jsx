@@ -1,21 +1,23 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
-const BASE_URL = "https://image.tmdb.org/t/p/w500/";
 
 export default function ImageGallery({ items }) {
   return (
     <ul>
       {items.map((item) => (
         <li key={item.id}>
-          {item.title}
-
-          {/* <img
-            width="180px"
-            height="250px"
-            src={`${BASE_URL}${item.poster_path}`}
-            alt={"img"}
-          /> */}
+          <Link
+            to={`/movies/${item.id}`}
+            style={{
+              color: "black",
+              fontSize: "20px",
+              fontWeight: "bold",
+            }}
+          >
+            {item.title}
+          </Link>
         </li>
       ))}
     </ul>

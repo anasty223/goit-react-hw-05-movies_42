@@ -23,7 +23,7 @@ const MoviesPage = () => {
 
       setMovies(results);
     });
-  }, [page, query, searchParams]);
+  }, [page, query]);
 
   const handleSubmitForm = (searchQuery) => {
     setMovies([]);
