@@ -5,6 +5,8 @@ import MoviesPage from "./pages/MoviesPage";
 import Layout from "./components/Layout/Layout";
 import NotFound from "./pages/NotFound";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
+import Cast from "./pages/Cast";
+import Reviews from "./pages/Reviews";
 
 function App() {
   return (
@@ -12,9 +14,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/:id" element={<MovieDetailsPage />} />
+
           <Route path="mouvies" element={<MoviesPage />} />
-          <Route path="movies/:id" element={<MovieDetailsPage />} />
+
+          <Route path="mouvies/:id" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

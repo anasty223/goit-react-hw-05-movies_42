@@ -9,7 +9,7 @@ export default function ImageGallery({ items }) {
       {items.map((item) => (
         <li key={item.id}>
           <Link
-            to={`/movies/${item.id}`}
+            to={`/mouvies/${item.id}`}
             style={{
               color: "black",
               fontSize: "20px",

@@ -24,3 +24,8 @@ export async function searchFilms(query, page) {
   );
   return response.data;
 }
+export async function fetchCast(movie_id) {
+  const response = await axios.get(`
+/movie/${movie_id}/credits?api_key=${API_KEY}&language=en-US`);
+  return response.data;
+}

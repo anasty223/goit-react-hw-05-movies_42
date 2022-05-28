@@ -39,7 +39,7 @@ function Home() {
         <ListMouvies>
           {mouvies.map((mouvie) => (
             <li key={mouvie.id}>
-              <NavLink to={`${mouvie.id}`}>{mouvie.title}</NavLink>
+              <NavLink to={`/mouvies/${mouvie.id}`}>{mouvie.title}</NavLink>
               {/* <img
                 width="180px"
                 height="250px"

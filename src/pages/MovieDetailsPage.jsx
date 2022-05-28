@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams, Link } from "react-router-dom";
 import * as api from "../services/api";
 const BASE_URL = "https://image.tmdb.org/t/p/w500/";
+
 export default function MovieDetailsPage() {
   const { id } = useParams();
-  // console.log("bookId", id);
   const [mouvie, setMouvie] = useState(null);
 
   useEffect(() => {
@@ -31,8 +31,19 @@ export default function MovieDetailsPage() {
           />
           <h2>{mouvie.title}</h2>
           <p>{mouvie.overview}</p>
+          <p>{mouvie.id}</p>
         </>
       )}
+      <p>Additional information</p>
+      <ul>
+        <li>
+          <Link to="cast"> Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
     </div>
   );
 }
