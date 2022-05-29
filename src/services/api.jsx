@@ -15,7 +15,7 @@ export async function fetchMouvieById(movie_id) {
   const response = await axios.get(
     `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`
   );
-  return response.data;
+  return response === 404 ? response : response.data;
 }
 
 export async function searchFilms(query, page) {
@@ -27,5 +27,12 @@ export async function searchFilms(query, page) {
 export async function fetchCast(movie_id) {
   const response = await axios.get(`
 /movie/${movie_id}/credits?api_key=${API_KEY}&language=en-US`);
+  return response.data;
+}
+
+export async function fetchReviews(params) {
+  const response = await axios.get(
+    `/movie/${params}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+  );
   return response.data;
 }

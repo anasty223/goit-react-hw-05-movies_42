@@ -7,7 +7,7 @@ export const SuperLink = styled(NavLink)`
   padding: 12px;
   font-weight: 500;
   color: #2a363b;
-  font-size: 18px;
+  font-size: 25px;
   &.active {
     color: #2196f3;
   }

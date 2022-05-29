@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Form({ onSubmit }) {
   const [query, setQuery] = useState("");
@@ -7,7 +8,7 @@ export default function Form({ onSubmit }) {
   const onSubmitForm = (e) => {
     e.preventDefault();
     if (query.trim() === "") {
-      alert("🦄 Please, enter text !");
+      toast.error(" Please, enter text !");
       return;
     }
     onSubmit(query);
@@ -34,6 +35,10 @@ export default function Form({ onSubmit }) {
       <button type="submit">
         <span>Search</span>
       </button>
+      <Toaster />
     </form>
   );
 }
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

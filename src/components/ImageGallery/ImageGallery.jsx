@@ -1,25 +1,36 @@
+import PropTypes from "prop-types";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
+import {
+  NavLinkMouviePage,
+  ListMouviesPage,
+  ItemsMouviePage,
+  ImgMouviePage,
+} from "../../styles/ImageGallery.styles";
+import defaultImg from "../../defaultImg.jpg";
+const BASE_URL = "https://image.tmdb.org/t/p/w500/";
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 export default function ImageGallery({ items }) {
   return (
-    <ul>
+    <ListMouviesPage>
       {items.map((item) => (
-        <li key={item.id}>
-          <Link
-            to={`/mouvies/${item.id}`}
-            style={{
-              color: "black",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}
-          >
+        <ItemsMouviePage key={item.id}>
+          <NavLinkMouviePage to={`/mouvies/${item.id}`}>
             {item.title}
-          </Link>
-        </li>
+            <ImgMouviePage
+              width="180px"
+              height="250px"
+              src={
+                item.poster_path ? `${BASE_URL}${item.poster_path}` : defaultImg
+              }
+              alt={"img"}
+            />
+          </NavLinkMouviePage>
+        </ItemsMouviePage>
       ))}
-    </ul>
+    </ListMouviesPage>
   );
 }
+ImageGallery.propTypes = {
+  items: PropTypes.array.isRequired,
+};

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import * as api from "../services/api";
 import { useSearchParams } from "react-router-dom";
 import Form from "../components/form/Form";
 import ImageGallery from "../components/ImageGallery/ImageGallery";
+import { ButtonMouviesPage } from "../styles/MoviesPage.styles";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -18,31 +20,32 @@ const MoviesPage = () => {
     api.searchFilms(query, page).then(({ results }) => {
       console.log("results", results);
       if (results.length === 0) {
-        alert("ERROR");
+        toast.error(`Not found ${query}`);
       }
 
-      setMovies(results);
+      setMovies((prev) => [...prev, ...results]);
     });
   }, [page, query]);
 
   const handleSubmitForm = (searchQuery) => {
-    setMovies([]);
     setSearchParams({ query: searchQuery });
     setPage(1);
   };
   const loadMore = () => {
-    setPage(page + 1);
+    setPage((prev) => prev + 1);
   };
   const btn = movies.length >= 20;
   return (
     <div>
       <Form onSubmit={handleSubmitForm} />
       <ImageGallery items={movies} />
+
       {btn && (
-        <button type="submit" onClick={loadMore}>
+        <ButtonMouviesPage type="submit" onClick={loadMore}>
           Load more
-        </button>
+        </ButtonMouviesPage>
       )}
+      <Toaster />
     </div>
   );
 };

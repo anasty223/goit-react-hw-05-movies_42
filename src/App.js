@@ -1,40 +1,34 @@
 import "./App.css";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
-import Home from "./pages/Home";
-import MoviesPage from "./pages/MoviesPage";
-import Layout from "./components/Layout/Layout";
-import NotFound from "./pages/NotFound";
-import MovieDetailsPage from "./pages/MovieDetailsPage";
-import Cast from "./pages/Cast";
-import Reviews from "./pages/Reviews";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+const Layout = lazy(() => import("./components/Layout/Layout"));
+const Home = lazy(() => import("./pages/Home"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage"));
+const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage"));
+const Cast = lazy(() => import("./pages/Cast"));
+const Reviews = lazy(() => import("./pages/Reviews"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+// const Loader = lazy(() => import("./components/Loader/Loader"));
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+      <Suspense fallback={<div>...LOADING</div>}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
 
-          <Route path="mouvies" element={<MoviesPage />} />
+            <Route path="mouvies" element={<MoviesPage />} />
 
-          <Route path="mouvies/:id" element={<MovieDetailsPage />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+            <Route path="mouvies/:id" element={<MovieDetailsPage />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+
+            <Route path="*" element={<NotFound />} />
           </Route>
-
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-
-      {/* <Home /> */}
-      {/* -------------------------------- */}
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="home" element={<Home />} />
-        <Route path="mouvies" element={<Mouvies />} />
-      </Routes> */}
-      {/* <Link to="/home">Home</Link> |<Link to="/mouvies">Mouvies</Link> */}
-      {/* <Outlet /> */}
+        </Routes>
+      </Suspense>
     </div>
   );
 }
