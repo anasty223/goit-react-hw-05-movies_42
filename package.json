@@ -2,8 +2,8 @@
   "name": "goit-react-hw-05-movies_42",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anasty223.github.io/goit-react-hw-05-movies_42/",
-  "dependencies": {
+    "dependencies": {
+    
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@react-icons/all-files": "^4.1.0",
@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "ink-spinner": "^4.0.3",
+    "netlify-cli": "^10.3.3",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -24,6 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy":"npm run build",
+    "deploy":"netlify deploy -p",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
