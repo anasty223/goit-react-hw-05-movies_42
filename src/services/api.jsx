@@ -1,13 +1,13 @@
 import axios from "axios";
 const API_KEY = "eba0388c934688725105b53c98cf82ca";
 
-axios.defaults.baseURL = "https://api.themoviedb.org";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 export async function fetchTrendingMouvies() {
   const response = await axios.get(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=1`
   );
-  //   console.log(response.data);
+
   return response.data;
 }
 

@@ -7,15 +7,21 @@ import {
   ImgMouviePage,
 } from "../../styles/ImageGallery.styles";
 import defaultImg from "../../defaultImg.jpg";
+import { useLocation } from "react-router-dom";
 const BASE_URL = "https://image.tmdb.org/t/p/w500/";
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 export default function ImageGallery({ items }) {
+  const location = useLocation();
+
   return (
     <ListMouviesPage>
       {items.map((item) => (
         <ItemsMouviePage key={item.id}>
-          <NavLinkMouviePage to={`/mouvies/${item.id}`}>
+          <NavLinkMouviePage
+            to={`/mouvies/${item.id}`}
+            state={{ from: location }}
+          >
             {item.title}
             <ImgMouviePage
               width="180px"

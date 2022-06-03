@@ -18,7 +18,7 @@ const MoviesPage = () => {
       return;
     }
     api.searchFilms(query, page).then(({ results }) => {
-      console.log("results", results);
+      // console.log("results", results);
       if (results.length === 0) {
         toast.error(`Not found ${query}`);
       }

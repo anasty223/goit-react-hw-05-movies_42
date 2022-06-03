@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../services/api";
 
+
 export default function Reviews() {
   const [reviewsList, setReviewsList] = useState("");
 
@@ -12,7 +13,8 @@ export default function Reviews() {
     async function fetchMouvieReviews() {
       try {
         const results = await api.fetchReviews(paramsIdCast);
-        console.log("results_review", results);
+
+
         setReviewsList(results);
       } catch (error) {
         console.log(error);

@@ -16,18 +16,22 @@ function Home() {
   const BASE_URL = "https://image.tmdb.org/t/p/w500/";
 
   useEffect(() => {
-    async function fetchMouvie() {
-     
-      try {
-        const mouvies = await api.fetchTrendingMouvies();
-        setMouvies(mouvies.results);
-      } catch (error) {
-        console.log(error);
-      } finally {
-      
-      }
-    }
-    fetchMouvie();
+    api.fetchTrendingMouvies().then(({ results }) => {
+
+
+      setMouvies(results);
+    });
+    // async function fetchMouvie() {
+    //   try {
+    //     const mouvies = await api.fetchTrendingMouvies();
+
+    //     setMouvies(mouvies.results);
+    //   } catch (error) {
+    //     console.log(error);
+    //   } finally {
+    //   }
+    // }
+    // fetchMouvie();
   }, []);
 
   return (
